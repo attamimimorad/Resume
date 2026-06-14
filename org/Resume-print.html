@@ -28,7 +28,7 @@
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
     line-height:1.5;
-    padding:clamp(12px,3vw,40px) clamp(10px,3vw,16px);
+    padding:40px 16px;
   }
 
   .page{
@@ -38,7 +38,7 @@
     background:var(--paper);
     box-shadow:0 2px 16px rgba(0,0,0,.10);
     border-radius:3px;
-    padding:clamp(28px,5.5vw,60px) clamp(22px,6vw,64px);
+    padding:60px 64px 56px;
   }
 
   /* ---------- Header ---------- */
@@ -245,53 +245,25 @@
 
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;}
 
-  /* ---------- Print ---------- */
+  /* ---------- Print: lock to the exact on-screen layout ---------- */
+  *, *::before, *::after{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
   @media print{
-    @page{margin:0.5in;}
-    html,body{background:#fff;padding:0;}
+    @page{ size:216mm 279mm; margin:0; }
+    html,body{ background:#fff !important; padding:0 !important; margin:0 !important; }
     .page{
-      width:auto;max-width:none;margin:0;
-      box-shadow:none;border-radius:0;
-      padding:0;
+      width:816px;
+      max-width:none;
+      margin:0 auto;
+      box-shadow:none;
+      border-radius:0;
+      padding:60px 64px 56px;
     }
-    .tag,.photo,.sec-title,.job-meta,.role,.name{
-      -webkit-print-color-adjust:exact;print-color-adjust:exact;
-    }
-    section,.job,.row,li,.ref{break-inside:avoid;}
+    section,.job,.row,.cert,li,.ref,.skill-block{break-inside:avoid;}
     .sec-title{break-after:avoid;}
-  }
-  /* ---------- Responsive ---------- */
-  /* tablet & down: collapse the paired grids to single column */
-  @media (max-width:720px){
-    .proj-grid,.cert-grid,.ref-grid,.twocol{grid-template-columns:1fr;}
-    .ref-grid{gap:14px;}
-    .name{font-size:clamp(28px,7vw,38px);}
-  }
-  /* phones: stack the header, center the identity block */
-  @media (max-width:560px){
-    .header{
-      flex-direction:column-reverse;
-      align-items:center;
-      text-align:center;
-      gap:16px;
-    }
-    .header-text{width:100%;}
-    .role{justify-content:center;}
-    .photo{width:100px;height:100px;flex-basis:100px;}
-    .contact{justify-content:center;gap:6px 16px;}
-    .job-head{flex-direction:column;align-items:flex-start;gap:1px;}
-    .job-meta{order:-1;}
-    .row,.cert{flex-direction:column;align-items:flex-start;gap:2px;}
-    .row-meta,.cert-year{order:-1;}
-    .summary,.job-desc,.lang-line{font-size:14px;}
-  }
-  /* small phones: tighten type so nothing overflows */
-  @media (max-width:380px){
-    .name{font-size:25px;}
-    .role{font-size:13px;letter-spacing:.1em;}
-    .contact{font-size:12px;}
-    .tag{font-size:11.5px;}
-    .photo{width:88px;height:88px;flex-basis:88px;}
+    .header{break-inside:avoid;}
   }
 </style>
 </head>
@@ -310,7 +282,7 @@
   <div class="contact">
     <span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-      <a href="/cdn-cgi/l/email-protection#77161b03161a1e1a1e1a18051613371802031b18181c5914181a"><span class="__cf_email__" data-cfemail="a3c2cfd7c2cecacecaceccd1c2c7e3ccd6d7cfccccc88dc0ccce">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#3455584055595d595d595b465550745b4140585b5b5f1a575b59"><span class="__cf_email__" data-cfemail="c2a3aeb6a3afabafabafadb0a3a682adb7b6aeadada9eca1adaf">[email&#160;protected]</span></a>
     </span>
     <span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
@@ -345,7 +317,7 @@
         <h3 class="job-title">Software Manager</h3>
         <span class="job-meta">Jun 2026 – Present</span>
       </div>
-      <p class="job-org">Tareek AlMajal — Geely Iraq · Iraq</p>
+      <p class="job-org">Tareek AlMajal — Authorized Agent of Geely <span class="loc">· Iraq</span></p>
       <p class="job-desc">Lead the software development function and IT systems strategy for Geely's authorized distributor in Iraq, directing enterprise applications across sales, after-sales, and operations. Responsible for building the software team, defining technical standards, and aligning system capabilities with the company's growth and digitization roadmap.</p>
     </div>
 
@@ -484,7 +456,7 @@
         <span class="cert-year">2021</span>
       </div>
       <div class="cert">
-        <div class="cert-main"><span class="cert-title">Business Writing</span><br><span class="cert-sub">BusinessEYE — Amman</span></div>
+        <div class="cert-main"><span class="cert-title">Business Writing</span><br><span class="cert-sub">BusinessEYE UK</span></div>
         <span class="cert-year">2025</span>
       </div>
       <div class="cert">
@@ -530,5 +502,20 @@
   </section>
 
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  (function () {
+    var img = document.querySelector('.photo');
+    function waitImg(){
+      if (img && !img.complete) {
+        return new Promise(function(res){ img.onload = img.onerror = res; });
+      }
+      return Promise.resolve();
+    }
+    var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    Promise.all([fontsReady, waitImg()]).then(function(){
+      setTimeout(function(){ window.print(); }, 500);
+    });
+  })();
+</script>
+</body>
 </html>
