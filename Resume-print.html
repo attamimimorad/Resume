@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morad Al-Tamimi — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Spectral:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1c1c;
+    --muted:#54585f;
+    --faint:#7c818a;
+    --navy:#1b3454;
+    --rule:#d9d6cd;
+    --rule-soft:#e7e4dc;
+    --paper:#ffffff;
+    --desk:#edeae3;
+    --accent:#1b3454;
+    --tag-bg:#eef1f5;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--desk);
+    font-family:"Source Sans 3",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    padding:40px 16px;
+  }
+
+  .page{
+    width:816px;
+    max-width:100%;
+    margin:0 auto;
+    background:var(--paper);
+    box-shadow:0 2px 16px rgba(0,0,0,.10);
+    border-radius:3px;
+    padding:60px 64px 56px;
+  }
+
+  /* ---------- Header ---------- */
+  .header{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    padding-bottom:22px;
+    border-bottom:2.5px solid var(--navy);
+  }
+  .header-text{flex:1;min-width:0;}
+  .name{
+    font-family:"Spectral",Georgia,serif;
+    font-weight:700;
+    font-size:38px;
+    line-height:1.04;
+    letter-spacing:-.01em;
+    color:var(--navy);
+    margin:0;
+  }
+  .role{
+    font-size:15.5px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:9px 0 0;
+  }
+  .role .sep{color:var(--faint);font-weight:400;margin:0 8px;}
+  .photo{
+    width:118px;height:118px;
+    flex:0 0 118px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center top;
+    border:3px solid #fff;
+    box-shadow:0 0 0 2px var(--navy);
+  }
+
+  /* ---------- Contact strip ---------- */
+  .contact{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 22px;
+    margin-top:16px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .contact span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+  .contact a{color:var(--muted);text-decoration:none;}
+  .contact svg{width:13px;height:13px;flex:0 0 13px;color:var(--accent);}
+
+  /* ---------- Sections ---------- */
+  section{margin-top:24px;}
+  .sec-title{
+    font-family:"Source Sans 3",sans-serif;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.19em;
+    text-transform:uppercase;
+    color:var(--navy);
+    margin:0 0 14px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--rule);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .summary{
+    font-size:14.5px;
+    color:#33373d;
+    margin:0;
+    line-height:1.62;
+  }
+
+  /* ---------- Experience ---------- */
+  .job{margin-bottom:20px;}
+  .job:last-child{margin-bottom:0;}
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
+  .job-title{
+    font-family:"Spectral",serif;
+    font-size:17.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+  }
+  .job-meta{
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--accent);
+    white-space:nowrap;
+    letter-spacing:.02em;
+  }
+  .job-org{
+    font-size:14px;
+    font-weight:600;
+    color:var(--muted);
+    margin:2px 0 0;
+  }
+  .job-org .loc{color:var(--faint);font-weight:400;}
+  .job-desc{
+    font-size:13.6px;
+    color:#3a3e44;
+    margin:9px 0 0;
+    line-height:1.55;
+  }
+  .lead-in{
+    font-size:13.4px;
+    color:var(--muted);
+    margin:9px 0 4px;
+    font-weight:600;
+  }
+
+  ul.bullets{margin:6px 0 0;padding:0;list-style:none;}
+  ul.bullets li{
+    position:relative;
+    padding-left:17px;
+    font-size:13.6px;
+    color:#3a3e44;
+    margin-bottom:4.5px;
+    line-height:1.5;
+  }
+  ul.bullets li::before{
+    content:"";
+    position:absolute;
+    left:0;top:8px;
+    width:5px;height:5px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+  ul.bullets li b{color:var(--ink);font-weight:600;}
+
+  /* compact project chips list */
+  .proj-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 28px;
+    margin:6px 0 0;
+  }
+  .proj-grid li{margin-bottom:0;}
+  ul.bullets li i{color:var(--faint);font-style:normal;font-size:12.6px;}
+
+  /* ---------- Two-up rows (education / certs / refs) ---------- */
+  .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    padding:7px 0;
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .row:last-child{border-bottom:none;}
+  .row-main{font-size:14px;}
+  .row-title{font-weight:600;color:var(--ink);}
+  .row-sub{color:var(--muted);font-size:13px;}
+  .row-meta{font-size:12.5px;color:var(--faint);white-space:nowrap;font-weight:500;}
+
+  /* ---------- Skills ---------- */
+  .skill-block{margin-bottom:11px;}
+  .skill-block:last-child{margin-bottom:0;}
+  .skill-label{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 5px;
+  }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    font-size:12.5px;
+    background:var(--tag-bg);
+    color:#2b3138;
+    padding:3px 10px;
+    border-radius:3px;
+    border:1px solid #e0e3e8;
+    white-space:nowrap;
+  }
+  .lang-line{font-size:13.8px;color:#33373d;}
+  .lang-line b{color:var(--ink);font-weight:600;}
+
+  /* certifications grid */
+  .cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;}
+  .cert{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:14px;
+    padding:8px 0;
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .cert-main{font-size:13.8px;}
+  .cert-title{font-weight:600;color:var(--ink);}
+  .cert-sub{color:var(--muted);font-size:12.6px;}
+  .cert-year{font-size:12.5px;color:var(--faint);font-weight:600;white-space:nowrap;}
+
+  /* references grid */
+  .ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;}
+  .ref{font-size:13.4px;}
+  .ref-name{font-weight:600;color:var(--ink);}
+  .ref-role{color:var(--muted);font-size:12.8px;}
+  .ref-phone{color:var(--faint);font-size:12.5px;margin-top:1px;}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;}
+
+  /* ---------- Print: lock to the exact on-screen layout ---------- */
+  *, *::before, *::after{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+  @media print{
+    @page{ size:216mm 279mm; margin:0; }
+    html,body{ background:#fff !important; padding:0 !important; margin:0 !important; }
+    .page{
+      width:816px;
+      max-width:none;
+      margin:0 auto;
+      box-shadow:none;
+      border-radius:0;
+      padding:60px 64px 56px;
+    }
+    section,.job,.row,.cert,li,.ref,.skill-block{break-inside:avoid;}
+    .sec-title{break-after:avoid;}
+    .header{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="page" data-screen-label="Resume">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-text">
+      <h1 class="name">Morad Al-Tamimi</h1>
+      <p class="role">Software Manager<span class="sep">/</span>ERP &amp; Applications Specialist</p>
+    </div>
+    <img class="photo" src="assets/photo.jpeg" alt="Morad Al-Tamimi">
+  </header>
+
+  <div class="contact">
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      <a href="/cdn-cgi/l/email-protection#2849445c494541454145475a494c68475d5c44474743064b4745"><span class="__cf_email__" data-cfemail="0f6e637b6e6266626662607d6e6b4f607a7b63606064216c6062">[email&#160;protected]</span></a>
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+      +962 79 938 3755
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Tabarbour, Amman, Jordan
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 9h8M8 13h6"/></svg>
+      Jordanian · b. 24 Dec 1982
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      LinkedIn: Morad Al-Tamimi
+    </span>
+  </div>
+
+  <!-- SUMMARY -->
+  <section>
+    <h2 class="sec-title">Professional Summary</h2>
+    <p class="summary">Software Manager and ERP specialist with 20+ years in the automotive technology sector, spanning hands-on software development, database administration, and enterprise systems management. Proven record delivering and maintaining mission-critical ERP, sales, and after-sales platforms for leading Toyota, Nissan, Mazda, and Geely distributors across Jordan, Egypt, Iraq, and Libya. Strong in C#/ASP.NET development, PL/SQL &amp; T-SQL, and Sage X3 and Infor ERP administration — with a consistent track record of translating complex business requirements into robust technical solutions and training cross-functional teams.</p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <h2 class="sec-title">Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <h3 class="job-title">Software Manager</h3>
+        <span class="job-meta">Jun 2026 – Present</span>
+      </div>
+      <p class="job-org">Tareek AlMajal — Authorized Agent of Geely <span class="loc">· Iraq</span></p>
+      <p class="job-desc">Lead the software development function and IT systems strategy for Geely's authorized distributor in Iraq, directing enterprise applications across sales, after-sales, and operations. Responsible for building the software team, defining technical standards, and aligning system capabilities with the company's growth and digitization roadmap.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3 class="job-title">IT Specialist — Developer &amp; Database Administrator</h3>
+        <span class="job-meta">Dec 2016 – May 2026</span>
+      </div>
+      <p class="job-org">Markazia — Toyota Jordan <span class="loc">· Amman, Jordan</span></p>
+      <p class="job-desc">Delivered and maintained core business systems as a developer and DBA, and managed the business and technical operation of the company's enterprise platforms.</p>
+
+      <p class="lead-in">Key development projects (independently &amp; in teams):</p>
+      <ul class="bullets proj-grid">
+        <li>Markazia System <i>(Team Member)</i></li>
+        <li>SARII — Toyota Safety Recall System <i>(Lead Developer)</i></li>
+        <li>Order-to-Cash for all vehicle sales channels <i>(Team)</i></li>
+        <li>Sage Automatic Upload <i>(Sole Contributor)</i></li>
+        <li>Fotarah integration — vehicle sales invoices <i>(Sole)</i></li>
+        <li>eFawateerCom integration <i>(Sole Contributor)</i></li>
+        <li>Markazia Notifications System <i>(Sole Contributor)</i></li>
+        <li>Mobile applications development</li>
+      </ul>
+
+      <p class="lead-in">Key projects as Database Administrator:</p>
+      <ul class="bullets proj-grid">
+        <li>VIN Decoder · Fotarah (General)</li>
+        <li>Vehicles Stocktaking System</li>
+        <li>Fixed Assets System</li>
+        <li>POS → Markazia migration</li>
+        <li>Legacy Parts → Dx migration</li>
+        <li>Sales Offer Module (Toyota &amp; Hino)</li>
+        <li>Oil &amp; Gold Prices Windows Service</li>
+      </ul>
+
+      <ul class="bullets" style="margin-top:9px;">
+        <li>Managed business &amp; technical administration of <b>Sage X3 ERP</b>, <b>Infor ERP</b>, Talentera, Precoro, Notion, and TFS source control.</li>
+        <li>Served as Infor ERP Technical Administrator and primary DBA across most enterprise projects.</li>
+        <li>Delivered <b>Power BI</b> training to Accounting, Sales, and CRM teams to strengthen data analysis and reporting.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3 class="job-title">Senior Software Developer</h3>
+        <span class="job-meta">Sep 2010 – Nov 2016</span>
+      </div>
+      <p class="job-org">Overseas Applied Systems <span class="loc">· Amman, Jordan</span></p>
+      <p class="job-desc">Played a pivotal role in a three-member team that built the <b>Dar ERP</b> solution. Following a focused development cycle (2010–2013), onboarded high-profile automotive clients requiring robust ERP functionality:</p>
+      <ul class="bullets proj-grid">
+        <li>Nissan Motors — Egypt</li>
+        <li>Bustami &amp; Saheb Group — Nissan Jordan</li>
+        <li>Al Khayyat Motors — Mazda Jordan</li>
+        <li>Decision Makers — MG &amp; Geely Iraq</li>
+        <li>Al-Jehani Group — Bosch Libya</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3 class="job-title">Support &amp; Maintenance Technician</h3>
+        <span class="job-meta">Jan 2004 – Aug 2009</span>
+      </div>
+      <p class="job-org">Aram Computers <span class="loc">· Zarqa, Jordan</span></p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <h2 class="sec-title">Education</h2>
+    <div class="row">
+      <div class="row-main">
+        <span class="row-title">B.Sc. in Computer Science</span><br>
+        <span class="row-sub">Zarqa Private University · Zarqa, Jordan</span>
+      </div>
+      <span class="row-meta">2006 – 2010</span>
+    </div>
+    <div class="row">
+      <div class="row-main">
+        <span class="row-title">General Secondary Education Certificate (Tawjihi) — Scientific</span><br>
+        <span class="row-sub">Zarqa Secondary School · Zarqa, Jordan</span>
+      </div>
+      <span class="row-meta">2005 – 2006</span>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <h2 class="sec-title">Skills</h2>
+    <div class="skill-block">
+      <p class="skill-label">Development &amp; Databases</p>
+      <div class="tags">
+        <span class="tag">C# / ASP.NET Web Forms</span>
+        <span class="tag">PL/SQL</span>
+        <span class="tag">T-SQL</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">jQuery</span>
+        <span class="tag">Bootstrap</span>
+        <span class="tag">SAP Crystal Reports</span>
+        <span class="tag">Mobile App Development</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-label">ERP &amp; Enterprise Systems</p>
+      <div class="tags">
+        <span class="tag">Sage X3 ERP Support</span>
+        <span class="tag">Infor ERP — IPD, IBI, M3, Rich Client</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">Database Administration (DBA)</span>
+        <span class="tag">Talentera</span>
+        <span class="tag">Precoro</span>
+        <span class="tag">TFS Source Control</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-label">Business &amp; Domain</p>
+      <p class="lang-line">Business process analysis &amp; development across Sales &amp; Distribution, CRM, After-Sales (Spare Parts &amp; Service), Procurement, Logistics, and Human Capital Management — translating complex requirements into robust technical solutions.</p>
+    </div>
+    <div class="skill-block">
+      <p class="skill-label">Languages</p>
+      <p class="lang-line"><b>Arabic</b> — Native &nbsp;·&nbsp; <b>English</b> — Very Good</p>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <h2 class="sec-title">Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert">
+        <div class="cert-main"><span class="cert-title">Coaching for Team Leaders</span><br><span class="cert-sub">180° Empowering People</span></div>
+        <span class="cert-year">2025</span>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span class="cert-title">Power BI</span><br><span class="cert-sub">Talal Abu-Ghazaleh Academy</span></div>
+        <span class="cert-year">2021</span>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span class="cert-title">Business Writing</span><br><span class="cert-sub">BusinessEYE UK</span></div>
+        <span class="cert-year">2025</span>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span class="cert-title">ASP.NET (Using C#)</span><br><span class="cert-sub">Jitawi Center — Amman</span></div>
+        <span class="cert-year">2009</span>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span class="cert-title">Communication Skills</span><br><span class="cert-sub">Markazia — Toyota Jordan</span></div>
+        <span class="cert-year">2023</span>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span class="cert-title">IT Course</span><br><span class="cert-sub">American Academy for Mgmt. &amp; Tech.</span></div>
+        <span class="cert-year">2003</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCES -->
+  <section>
+    <h2 class="sec-title">References</h2>
+    <div class="ref-grid">
+      <div class="ref">
+        <div class="ref-name">Firas Istaih</div>
+        <div class="ref-role">IT &amp; Excellence Director · Markazia Group</div>
+        <div class="ref-phone">+962 79 550 0753</div>
+      </div>
+      <div class="ref">
+        <div class="ref-name">Mohammad Mari'e</div>
+        <div class="ref-role">Group IT Manager · Bustami &amp; Saheb Group</div>
+        <div class="ref-phone">+962 79 906 6653</div>
+      </div>
+      <div class="ref">
+        <div class="ref-name">Abed Alrahman Alghouti</div>
+        <div class="ref-role">Group IT Manager · Al Khayyat Motors</div>
+        <div class="ref-phone">+962 78 570 1545</div>
+      </div>
+      <div class="ref">
+        <div class="ref-name">Hassan Jaber</div>
+        <div class="ref-role">IT Manager · Tahboub Group</div>
+        <div class="ref-phone">+962 78 839 4454</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  (function () {
+    var img = document.querySelector('.photo');
+    function waitImg(){
+      if (img && !img.complete) {
+        return new Promise(function(res){ img.onload = img.onerror = res; });
+      }
+      return Promise.resolve();
+    }
+    var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    Promise.all([fontsReady, waitImg()]).then(function(){
+      setTimeout(function(){ window.print(); }, 500);
+    });
+  })();
+</script>
+</body>
+</html>
